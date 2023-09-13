@@ -8,18 +8,23 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import FetchData from './api/FetchData';
 import ProductSingle from './api/ProductSingle';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-    const myData =   useEffect(()=>{
+    const[data,setData] = useState([])
+    useEffect(()=>{
         fetch('https://fakestoreapi.com/products')
         .then(reponse => reponse.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
+            setData(data);
         })
         .catch('Failed to fetch')       
       
-    },[]) 
+    },[])
+    const myData = data
+
+
   return (
     <div>
       <Navbar/>
